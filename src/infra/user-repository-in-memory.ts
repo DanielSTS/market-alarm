@@ -1,5 +1,6 @@
 import UserRepository from "../domain/repositories/user-repository";
 import User from "../domain/entities/user";
+import Email from "../domain/entities/email";
 
 export default class UserRepositoryInMemory implements UserRepository {
     private users: User[] = []
@@ -12,7 +13,7 @@ export default class UserRepositoryInMemory implements UserRepository {
         return this.users;
     }
 
-    async getByEmail(email: string): Promise<User | undefined> {
-        return this.users.find((user) => user.email === email);
+    async getByEmail(email: Email): Promise<User | undefined> {
+        return this.users.find((user) => user.email.isEqual(email));
     }
 }
