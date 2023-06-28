@@ -1,5 +1,4 @@
 import CreateAlarm from '../src/application/use-cases/create-alarm';
-import CreateUser from '../src/application/use-cases/create-user';
 import Email from '../src/domain/entities/email';
 import AlarmRepositoryInMemory from '../src/infra/alarm-repository-in-memory';
 import UserRepositoryInMemory from '../src/infra/user-repository-in-memory';
