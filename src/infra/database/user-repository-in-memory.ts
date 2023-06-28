@@ -13,6 +13,6 @@ export default class UserRepositoryInMemory implements UserRepository {
     }
 
     async getByEmail(email: string): Promise<User | undefined> {
-        return this.users.find((user) => user.email.address === email);
+        return this.users.find((user) => user.email.value === email);
     }
 }

@@ -1,5 +1,4 @@
 import CreateAlarm from '../src/application/use-cases/create-alarm';
-import Email from '../src/domain/entities/email';
 import User from '../src/domain/entities/user';
 import AlarmRepositoryInMemory from '../src/infra/database/alarm-repository-in-memory';
 import UserRepositoryInMemory from '../src/infra/database/user-repository-in-memory';
@@ -24,5 +23,5 @@ test("Criação de alarme de mercado quando usuário não existe", async functio
     const userRepository = new UserRepositoryInMemory();
     const createAlarm = new CreateAlarm(alarmRepository, userRepository);
     expect(async () => await createAlarm.execute({ email: "daniel@email.com", asset: 'btc', price: 1200 }))
-        .rejects.toThrow('User not found');
+        .rejects.toThrow('User not found.');
 })

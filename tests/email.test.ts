@@ -5,7 +5,7 @@ test("Deve criar uma instância de Email com endereço válido", () => {
     const email = new Email(validAddress);
     expect(email).toBeDefined();
     expect(email).toBeInstanceOf(Email);
-    expect(email.address).toBe(validAddress);
+    expect(email.value).toBe(validAddress);
 });
 
 test("Deve lançar um erro ao criar uma instância de Email com endereço inválido", () => {
