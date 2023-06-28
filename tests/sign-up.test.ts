@@ -1,5 +1,5 @@
 import SignUp from "../src/application/use-cases/sign-up";
-import UserRepositoryInMemory from "../src/infra/user-repository-in-memory";
+import UserRepositoryInMemory from "../src/infra/database/user-repository-in-memory";
 
 test("Deve criar um usuário", async function () {
     const userRepository = new UserRepositoryInMemory();

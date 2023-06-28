@@ -1,5 +1,5 @@
-import GetAlarms from "../application/use-cases/get-alarms";
-import AlarmRepositoryInMemory from "../infra/alarm-repository-in-memory";
+import GetAlarms from "../../application/use-cases/get-alarms";
+import AlarmRepositoryInMemory from "../database/alarm-repository-in-memory";
 
 export default class AlarmController {
     static getAlarms(params: any, body: any) {

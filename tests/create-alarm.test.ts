@@ -1,8 +1,8 @@
 import CreateAlarm from '../src/application/use-cases/create-alarm';
 import Email from '../src/domain/entities/email';
 import User from '../src/domain/entities/user';
-import AlarmRepositoryInMemory from '../src/infra/alarm-repository-in-memory';
-import UserRepositoryInMemory from '../src/infra/user-repository-in-memory';
+import AlarmRepositoryInMemory from '../src/infra/database/alarm-repository-in-memory';
+import UserRepositoryInMemory from '../src/infra/database/user-repository-in-memory';
 
 test("Criação de alarme de mercado quando usuário existe", async function () {
     const alarmRepository = new AlarmRepositoryInMemory();

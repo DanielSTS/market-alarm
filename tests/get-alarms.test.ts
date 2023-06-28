@@ -1,6 +1,6 @@
 import GetAlarms from "../src/application/use-cases/get-alarms";
 import Alarm from "../src/domain/entities/alarm";
-import AlarmRepositoryInMemory from "../src/infra/alarm-repository-in-memory";
+import AlarmRepositoryInMemory from "../src/infra/database/alarm-repository-in-memory";
 
 test('Deve retornar uma lista vazia quando não houver alarmes', async () => {
     const alarmRepository = new AlarmRepositoryInMemory();
