@@ -2,16 +2,17 @@ import { compare, hash } from 'bcrypt';
 
 export default class BcryptPassword {
 
-    private constructor(readonly value: string, readonly salt: string) {
+    private constructor(readonly value: string, readonly salt: number) {
     }
 
     static async create(password: string): Promise<BcryptPassword> {
         const salt = 10;
         const value = await hash(password, salt);
-        return new BcryptPassword(value, String(salt));
+        return new BcryptPassword(value, salt);
     }
 
-    validate(password: string) {
-        return compare(password, this.value);
+    async validate(password: string): Promise<boolean> {
+        const ret = await compare(password, this.value);
+        return ret;
     }
 }

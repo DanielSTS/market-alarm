@@ -4,8 +4,7 @@ import AlarmRepository from "../../domain/repositories/alarm-repository";
 import UserRepository from "../../domain/repositories/user-repository";
 
 export default class CreateAlarm {
-    constructor(private readonly alarmRepository: AlarmRepository,
-        private readonly userRepository: UserRepository) { }
+    constructor(private readonly alarmRepository: AlarmRepository, private readonly userRepository: UserRepository) { }
 
     async execute(input: Input) {
         const user = await this.userRepository.getByEmail(input.email);
