@@ -3,13 +3,23 @@ import HttpServer from "./http-server";
 
 export default class ExpressAdapter implements HttpServer {
     private app: any
+
     constructor() {
         this.app = express();
         this.app.use(express.json())
     }
+
     on(method: string, url: string, callback: Function): void {
-        throw new Error("Method not implemented.");
+        this.app[method](url, async function (req: any, res: any) {
+            try {
+                const output = await callback(req.params, req.body);
+                res.json(output);
+            } catch (e: any) {
+                res.status(422).json({ message: e.message });
+            }
+        });
     }
+
     listen(port: number): void {
         this.app.listen(port);
     }
