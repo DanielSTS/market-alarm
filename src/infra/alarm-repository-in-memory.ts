@@ -8,7 +8,7 @@ export default class AlarmRepositoryInMemory implements AlarmRepository {
         this.alarms.push(alarm);
     }
 
-    async list(): Promise<Alarm[]> {
-        return this.alarms;
+    async list(email: string): Promise<Alarm[]> {
+        return this.alarms.filter((alarm) => alarm.email === email);
     }
 }
