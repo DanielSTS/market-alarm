@@ -1,5 +1,6 @@
 import CreateAlarm from '../src/application/use-cases/create-alarm';
 import Email from '../src/domain/entities/email';
+import User from '../src/domain/entities/user';
 import AlarmRepositoryInMemory from '../src/infra/alarm-repository-in-memory';
 import UserRepositoryInMemory from '../src/infra/user-repository-in-memory';
 
@@ -8,15 +9,13 @@ test("Criação de alarme de mercado quando usuário existe", async function () 
     const userRepository = new UserRepositoryInMemory();
     const user = {
         name: "Daniel",
-        email: new Email("daniel@email.com"),
-        phone: "888888888",
-        cpf: "111.111.111-11",
+        email: "daniel@email.com",
         password: "senha123"
     };
-    await userRepository.save(user);
+    await userRepository.save(await User.create(user.name, user.email, user.password));
     const createAlarm = new CreateAlarm(alarmRepository, userRepository);
-    await createAlarm.execute({ email: user.email.address, asset: 'btc', price: 1200 });
-    const alarms = await alarmRepository.list(user.email.address);
+    await createAlarm.execute({ email: user.email, asset: 'btc', price: 1200 });
+    const alarms = await alarmRepository.list(user.email);
     expect(alarms).toHaveLength(1);
 })
 

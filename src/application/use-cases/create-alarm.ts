@@ -8,7 +8,7 @@ export default class CreateAlarm {
         private readonly userRepository: UserRepository) { }
 
     async execute(input: Input) {
-        const user = await this.userRepository.getByEmail(new Email(input.email));
+        const user = await this.userRepository.getByEmail(input.email);
         if (!user) {
             throw new Error('User not found');
         }
