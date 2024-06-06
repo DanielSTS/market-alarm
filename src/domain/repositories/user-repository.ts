@@ -1,7 +1,7 @@
-import User from "../entities/user";
+import User from '../entities/user';
 
 export default interface UserRepository {
-    save(user: User): Promise<void>;
-    list(): Promise<User[]>
-    getByEmail(email: string): Promise<User | undefined>;
+  save(user: User): Promise<void>;
+  list(): Promise<User[]>;
+  getByEmail(email: string): Promise<User | undefined>;
 }

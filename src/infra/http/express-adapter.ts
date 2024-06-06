@@ -1,26 +1,26 @@
-import express from "express";
-import HttpServer from "./http-server";
+import express from 'express';
+import HttpServer, { AnyFunction } from './http-server';
 
 export default class ExpressAdapter implements HttpServer {
-    private app: any
+  private readonly app: any;
 
-    constructor() {
-        this.app = express();
-        this.app.use(express.json())
-    }
+  constructor() {
+    this.app = express();
+    this.app.use(express.json());
+  }
 
-    on(method: string, url: string, callback: Function): void {
-        this.app[method](url, async function (req: any, res: any) {
-            try {
-                const output = await callback(req.params, req.body);
-                res.json(output);
-            } catch (e: any) {
-                res.status(422).json({ message: e.message });
-            }
-        });
-    }
+  on(method: string, url: string, callback: AnyFunction): void {
+    this.app[method](url, async function (req: any, res: any) {
+      try {
+        const output = await callback(req.params, req.body);
+        res.json(output);
+      } catch (e: any) {
+        res.status(422).json({ message: e.message });
+      }
+    });
+  }
 
-    listen(port: number): void {
-        this.app.listen(port);
-    }
+  listen(port: number): void {
+    this.app.listen(port);
+  }
 }
